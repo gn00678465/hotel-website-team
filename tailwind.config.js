@@ -70,6 +70,14 @@ export default {
         white: '#FFFFFF',
         transparent: 'transparent'
       },
+      lineHeight: {
+        heading: '120%',
+        normal: '150%',
+      },
+      letterSpacing: {
+        heading: '5%',
+        normal: '2%',
+      },
     },
     extend: {},
   },
