@@ -26,8 +26,9 @@
       <li
         v-for="date of calendar.monthDate"
         :key="date.date"
-        class="reactive px-3 pb-4 pt-2 text-center leading-normal tracking-normal"
+        class="relative cursor-pointer px-3 pb-4 pt-2 text-center leading-normal tracking-normal"
         :class="date.other ? 'invisible' : 'visible'"
+        @click="emit('select', date.date)"
       >
         {{ new Date(date.date).getDate() }}
       </li>
@@ -53,6 +54,7 @@ const props = withDefaults(defineProps<Partial<Props>>(), {
 });
 const emit = defineEmits<{
   click: [direction: 'left' | 'right'];
+  select: [value: number];
 }>();
 
 const { current } = toRefs(props);
@@ -68,4 +70,23 @@ watch(current, (newCurrent) => {
 });
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.active:not(.invisible) {
+  @apply text-neutral-white;
+  &::before {
+    content: '';
+    transform: translate(-50%, calc(-50% - 4px));
+    z-index: -1;
+    @apply absolute left-1/2 top-1/2 h-10 w-10 rounded-full bg-neutral-black;
+  }
+}
+
+.range:not(.invisible) {
+  &::before {
+    content: '';
+    transform: translate(-50%, calc(-50% - 4px));
+    z-index: -1;
+    @apply absolute left-1/2 top-1/2 h-10 w-full bg-neutral-10;
+  }
+}
+</style>
