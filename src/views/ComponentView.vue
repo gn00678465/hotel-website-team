@@ -50,15 +50,15 @@
         </template>
       </section-tab>
     </div>
-    <CustomInput class="max-w-60 my-7" v-model:inputValue="name"></CustomInput>
-    <CustomButton class="max-w-60 my-7" buttonType="primary">
+    <BaseInput class="max-w-60 my-7" v-model:inputValue="name"></BaseInput>
+    <BaseButton class="max-w-60 my-7" buttonType="primary">
       <IconChecked class="h-6 w-6" />
-    </CustomButton>
-    <CustomHeroButton class="my-7"></CustomHeroButton>
-    <CustomCheckbox class="my-7" v-model:checked="isChecked" id="myCheckbox" label="My Checkbox" />
+    </BaseButton>
+    <HeroButton class="my-7"></HeroButton>
+    <BaseCheckbox class="my-7" v-model:checked="isChecked" id="myCheckbox" label="My Checkbox" />
       {{ name }}
       {{ isChecked }}
-    <CustomDropdown :options="selectOptions" v-model:selectedOption="selectOption"></CustomDropdown>
+    <BaseDropdown :options="selectOptions" v-model:selectedOption="selectOption"></BaseDropdown>
     {{ selectOption }}
     <h4 class="mb-2 text-h4">BaseModal</h4>
     <button
@@ -78,11 +78,11 @@ import { ref, reactive } from 'vue';
 import { SectionTab, type Tab } from '@/components/SectionTab';
 import BaseSteppers from '@/components/Stepper/BaseSteppers.vue';
 import BaseModal from '@/components/BaseModal.vue';
-import CustomInput from "@/components/CustomInput.vue"
-import CustomButton from "@/components/CustomButton.vue"
-import CustomHeroButton from "@/components/CustomHeroButton.vue"
-import CustomCheckbox from "@/components/CustomCheckbox.vue"
-import CustomDropdown from "@/components/CustomDropdown.vue"
+import BaseInput from "@/components/BaseInput.vue"
+import BaseButton from "@/components/BaseButton.vue"
+import HeroButton from "@/components/HeroButton.vue"
+import BaseCheckbox from "@/components/BaseCheckbox.vue"
+import BaseDropdown from "@/components/BaseDropdown.vue"
 import IconChecked from "@/components/icons/IconChecked.vue"
 
 interface SelectOption {
