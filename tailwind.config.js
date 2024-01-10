@@ -39,6 +39,7 @@ export default {
         80: '#AE9984',
         60: '#E1D1C2',
         40: '#F1EAE4',
+        10: '#F7F2EE',
         tint: '#FAF7F5',
       },
       success: {
@@ -67,6 +68,7 @@ export default {
         40: '#ECECEC',
         10: '#F9F9F9',
         white: '#FFFFFF',
+        transparent: 'transparent'
       },
     },
     extend: {},
