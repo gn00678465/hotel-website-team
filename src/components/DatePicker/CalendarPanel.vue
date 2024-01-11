@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[308px]">
+  <div class="relative w-[308px]">
     <div class="mb-2 flex items-center justify-between text-h6 font-bold">
       <IcArrowLeft
         class="cursor-pointer"
@@ -26,7 +26,7 @@
       <li
         v-for="date of calendar.monthDate"
         :key="date.date"
-        class="relative cursor-pointer px-3 pb-4 pt-2 text-center leading-normal tracking-normal"
+        class="relative z-0 cursor-pointer px-3 pb-4 pt-2 text-center leading-normal tracking-normal"
         :class="date.other ? 'invisible' : 'visible' + ' ' + dateClasses(date.date)"
         @click="emit('select', date.date)"
       >
@@ -60,7 +60,7 @@ const emit = defineEmits<{
 
 const { current, showArrow, value } = toRefs(props);
 
-const calendar = ref(new Calendar({ current: unref(current) }));
+const calendar = ref(new Calendar({ current: unref(current), count: 7 * 6 }));
 
 function onClickArrow(direction: 'left' | 'right') {
   emit('click', direction);
@@ -84,7 +84,7 @@ watch(current, (newCurrent) => {
 <style scoped lang="scss">
 .active:not(.invisible) {
   @apply text-neutral-white;
-  &::before {
+  &::after {
     content: '';
     transform: translate(-50%, calc(-50% - 4px));
     z-index: -1;
@@ -93,7 +93,7 @@ watch(current, (newCurrent) => {
 }
 
 .range:not(.invisible) {
-  &::before {
+  &::after {
     content: '';
     transform: translate(-50%, calc(-50% - 4px));
     z-index: -1;

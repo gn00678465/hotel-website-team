@@ -71,7 +71,12 @@
 
     <BaseModal v-model:open="isModalOpen" title="Title" content="content...." />
 
-    <DatePicker />
+    <div class="grid grid-cols-3">
+      <div class="col-span-2"></div>
+      <div class="col-span-1">
+        <DatePicker />
+      </div>
+    </div>
   </div>
 </template>
 
