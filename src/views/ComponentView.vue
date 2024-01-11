@@ -25,13 +25,13 @@
     </div>
     <button
       type="button"
-      class="text-sm text-gray-900 bg-white ring-gray-300 duration-300 hover:bg-gray-50 inline-flex items-center rounded-md px-3 py-2 font-semibold shadow-sm ring-1 ring-inset"
+      class="text-sm text-gray-900 bg-white ring-gray-300 hover:bg-gray-50 inline-flex items-center rounded-md px-3 py-2 font-semibold shadow-sm ring-1 ring-inset duration-300"
       @click="activeStep += 1"
     >
       increment</button
     ><button
       type="button"
-      class="text-sm text-gray-900 bg-white ring-gray-300 duration-300 hover:bg-gray-50 inline-flex items-center rounded-md px-3 py-2 font-semibold shadow-sm ring-1 ring-inset"
+      class="text-sm text-gray-900 bg-white ring-gray-300 hover:bg-gray-50 inline-flex items-center rounded-md px-3 py-2 font-semibold shadow-sm ring-1 ring-inset duration-300"
       @click="activeStep -= 1"
     >
       decrement
@@ -50,14 +50,14 @@
         </template>
       </section-tab>
     </div>
-    <BaseInput class="max-w-60 my-7" v-model:inputValue="name"></BaseInput>
-    <BaseButton class="max-w-60 my-7" buttonType="primary">
+    <BaseInput class="my-7 max-w-60" v-model:inputValue="name"></BaseInput>
+    <BaseButton class="my-7 max-w-60" buttonType="primary">
       <IconChecked class="h-6 w-6" />
     </BaseButton>
     <HeroButton class="my-7"></HeroButton>
     <BaseCheckbox class="my-7" v-model:checked="isChecked" id="myCheckbox" label="My Checkbox" />
-      {{ name }}
-      {{ isChecked }}
+    {{ name }}
+    {{ isChecked }}
     <BaseDropdown :options="selectOptions" v-model:selectedOption="selectOption"></BaseDropdown>
     {{ selectOption }}
     <h4 class="mb-2 text-h4">BaseModal</h4>
@@ -70,6 +70,8 @@
     </button>
 
     <BaseModal v-model:open="isModalOpen" title="Title" content="content...." />
+
+    <DatePicker />
   </div>
 </template>
 
@@ -78,12 +80,13 @@ import { ref, reactive } from 'vue';
 import { SectionTab, type Tab } from '@/components/SectionTab';
 import BaseSteppers from '@/components/Stepper/BaseSteppers.vue';
 import BaseModal from '@/components/BaseModal.vue';
-import BaseInput from "@/components/BaseInput.vue"
-import BaseButton from "@/components/BaseButton.vue"
-import HeroButton from "@/components/HeroButton.vue"
-import BaseCheckbox from "@/components/BaseCheckbox.vue"
-import BaseDropdown from "@/components/BaseDropdown.vue"
-import IconChecked from "@/components/icons/IconChecked.vue"
+import BaseInput from '@/components/BaseInput.vue';
+import BaseButton from '@/components/BaseButton.vue';
+import HeroButton from '@/components/HeroButton.vue';
+import BaseCheckbox from '@/components/BaseCheckbox.vue';
+import BaseDropdown from '@/components/BaseDropdown.vue';
+import IconChecked from '@/components/icons/IconChecked.vue';
+import { DatePicker } from '@/components/DatePicker';
 
 interface SelectOption {
   label: string;
@@ -95,19 +98,19 @@ const selectOption = ref<number>();
 const selectOptions = reactive<SelectOption[]>([
   {
     label: 'please select',
-    value: 0
+    value: 0,
   },
   {
     label: 'a',
-    value: 1
+    value: 1,
   },
   {
     label: 'b',
-    value: 2
+    value: 2,
   },
   {
     label: 'c',
-    value: 3
+    value: 3,
   },
 ]);
 

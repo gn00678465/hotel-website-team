@@ -1,3 +1,5 @@
+import type { CalendarDate } from './types';
+
 export class Calendar {
   today: Date;
   current: Date;
