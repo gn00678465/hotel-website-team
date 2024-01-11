@@ -52,6 +52,7 @@ import CalendarPanel from './CalendarPanel.vue';
 import DateInput from './DateInput.vue';
 import BaseButton from '../BaseButton.vue';
 import { diffDate, curryFormatDate } from './utils';
+import { useToggleScrollbar } from '@/hooks';
 
 type Props = Partial<{
   value: [number, number] | null;
@@ -153,13 +154,7 @@ function onClickMask(e: Event) {
   emits('update:show', false);
 }
 
-watchEffect(() => {
-  if (show.value) {
-    document.documentElement.style.overflow = 'hidden';
-  } else {
-    document.documentElement.style.overflow = 'auto';
-  }
-});
+useToggleScrollbar(show, document.documentElement);
 </script>
 
 <style scoped>
