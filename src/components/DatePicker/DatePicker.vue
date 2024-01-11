@@ -1,5 +1,20 @@
 <template>
   <div class="space-y-10">
+    <div class="gap flex items-center justify-between">
+      <ul class="space-y-2">
+        <li class="leading-heading tracking-heading text-h5 font-bold">{{ diffDays }} 晚</li>
+        <li
+          class="font-regular flex items-center justify-center gap-x-2 text-body leading-normal tracking-normal"
+        >
+          <span>{{ formatDate(tempDates?.[0]) }}</span
+          ><span>-</span><span>{{ formatDate(tempDates?.[1]) }}</span>
+        </li>
+      </ul>
+      <div class="flex items-center gap-x-2">
+        <date-input label="入住" :date="formatDate(tempDates?.[0])"></date-input>
+        <date-input label="退房" :date="formatDate(tempDates?.[1])"></date-input>
+      </div>
+    </div>
     <div class="flex flex-col p-8 desktop:flex-row desktop:gap-x-[60px]">
       <CalendarPanel
         key="leftPanel"
@@ -30,7 +45,9 @@
 <script setup lang="ts">
 import { ref, computed, toRefs } from 'vue';
 import CalendarPanel from './CalendarPanel.vue';
+import DateInput from './DateInput.vue';
 import BaseButton from '../BaseButton.vue';
+import { diffDate, curryFormatDate } from './utils';
 
 type Props = Partial<{
   value: [number, number] | null;
@@ -50,6 +67,14 @@ const leftPanelCurrent = ref(new Date());
 const rightPanelCurrent = computed(() => {
   const date = new Date(leftPanelCurrent.value);
   return new Date(date.setMonth(date.getMonth() + 1));
+});
+
+const diffDays = computed<number>(() => {
+  if (tempDates.value && tempDates.value.length === 2) {
+    const [start, end] = tempDates.value;
+    return diffDate(end, start, 'day');
+  }
+  return 0;
 });
 
 function onClickArrow(direction: 'left' | 'right') {
@@ -106,6 +131,10 @@ function onClick() {
 function onClear() {
   tempDates.value = null;
   emits('update:value', tempDates.value);
+}
+
+function formatDate(date?: number): string {
+  return (date && curryFormatDate('YYYY/ MM / DD')(date)) || '-';
 }
 </script>
 

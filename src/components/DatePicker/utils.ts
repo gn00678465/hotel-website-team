@@ -1,5 +1,9 @@
 import type { CalendarDate } from './types';
+import dayjs from 'dayjs';
 
+/**
+ * 日曆時間計算
+ */
 export class Calendar {
   today: Date;
   current: Date;
@@ -30,7 +34,7 @@ export class Calendar {
     )} 月`;
   }
 
-  get monthDate(): { date: number; other: boolean }[] {
+  get monthDate(): CalendarDate[] {
     return [...new Array(this.count)].map((_, i) => {
       const _date = this.firstMonthDate;
       return {
@@ -47,4 +51,37 @@ export class Calendar {
   nextMonth(): void {
     this.current.setMonth(this.current.getMonth() + 1);
   }
+}
+
+/**
+ * 格式化日期
+ * @param date 須帶入 Date 物件或 Milliseconds 時間格式
+ * @param format 輸出的時間格式
+ * @returns {string}
+ */
+export function formatDate(date: dayjs.ConfigType, format: string): string {
+  return dayjs(date).format(format);
+}
+
+/**
+ * 格式化日期(curry)
+ * @param format
+ * @returns
+ */
+export const curryFormatDate = (format: string) => (date: dayjs.ConfigType) =>
+  dayjs(date).format(format);
+
+/**
+ * 計算日期差距
+ * @param startDate 須帶入 Date 物件或 Milliseconds 時間格式
+ * @param endDate 須帶入 Date 物件或 Milliseconds 時間格式
+ * @param unit 單位, day, week, ...
+ * @returns {number} 日期差距
+ */
+export function diffDate(
+  startDate: dayjs.ConfigType,
+  endDate: dayjs.ConfigType,
+  unit: dayjs.UnitType,
+): number {
+  return dayjs(startDate).diff(dayjs(endDate), unit, false);
 }
