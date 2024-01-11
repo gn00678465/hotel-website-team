@@ -1,7 +1,6 @@
 import { watchEffect } from 'vue';
 import type { Ref } from 'vue';
-
-const getScrollbarWidth = () => window.innerWidth - document.documentElement.clientWidth;
+import { getScrollbarWidth } from '@/utils';
 
 export function useToggleScrollbar(trigger: Ref<boolean>, target: HTMLElement): void {
   watchEffect(() => {

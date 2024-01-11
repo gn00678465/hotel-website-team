@@ -85,3 +85,12 @@ export function diffDate(
 ): number {
   return dayjs(startDate).diff(dayjs(endDate), unit, false);
 }
+
+/**
+ * 日期小於今天
+ * @param date 須帶入 Date 物件或 Milliseconds 時間格式
+ * @returns {boolean}
+ */
+export function isSmallThenToday(date: dayjs.ConfigType): boolean {
+  return dayjs().isAfter(dayjs(date));
+}

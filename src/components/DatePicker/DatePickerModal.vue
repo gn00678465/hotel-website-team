@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, toRefs, watchEffect } from 'vue';
+import { ref, computed, toRefs } from 'vue';
 import CalendarPanel from './CalendarPanel.vue';
 import DateInput from './DateInput.vue';
 import BaseButton from '../BaseButton.vue';
@@ -137,12 +137,14 @@ function onNextMonth() {
 function onClick() {
   if (tempDates.value && tempDates.value.length === 2) {
     emits('update:value', [tempDates.value[0], tempDates.value[1]]);
+    emits('update:show', false);
   }
 }
 
 function onClear() {
   tempDates.value = null;
   emits('update:value', tempDates.value);
+  emits('update:show', false);
 }
 
 function formatDate(date?: number): string {

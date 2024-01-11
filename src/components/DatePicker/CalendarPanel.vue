@@ -28,7 +28,7 @@
         :key="date.date"
         class="relative z-0 cursor-pointer px-3 pb-4 pt-2 text-center leading-normal tracking-normal"
         :class="date.other ? 'invisible' : 'visible' + ' ' + dateClasses(date.date)"
-        @click="emit('select', date.date)"
+        @click="onSelectDate(date.date)"
       >
         {{ new Date(date.date).getDate() }}
       </li>
@@ -40,7 +40,7 @@
 import { ref, toRefs, unref, watch, computed } from 'vue';
 import IcArrowLeft from '@/assets/icons/IcArrowLeft.vue';
 import IcArrowRight from '@/assets/icons/IcArrowRight.vue';
-import { Calendar } from './utils';
+import { Calendar, isSmallThenToday } from './utils';
 const weekdays = ['日', '一', '二', '三', '四', '五', '六'];
 
 interface Props {
@@ -66,12 +66,18 @@ function onClickArrow(direction: 'left' | 'right') {
   emit('click', direction);
 }
 
+function onSelectDate(date: number) {
+  if (isSmallThenToday(date)) return;
+  emit('select', date);
+}
+
 const dateClasses = computed(() => (date: number) => {
   if (value.value) {
     const activeClass = [...value.value].includes(date) ? 'active' : '';
     const rangeClass =
       value.value.length === 2 && date > value.value[0] && date < value.value[1] ? 'range' : '';
-    return activeClass + ' ' + rangeClass;
+    const cursorClass = isSmallThenToday(date) ? 'cursor-not-allowed' : '';
+    return [activeClass, rangeClass, cursorClass].join(' ');
   }
   return '';
 });
