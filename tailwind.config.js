@@ -32,6 +32,15 @@ export default {
       body2: '14px',
       tiny: '12px',
     },
+    lineHeight: {
+      heading: '120%',
+      normal: '150%',
+    },
+    letterSpacing: {
+      '': '1px',
+      heading: '5%',
+      normal: '2%',
+    },
     colors: {
       primary: {
         120: '#7B6651',
@@ -68,18 +77,14 @@ export default {
         40: '#ECECEC',
         10: '#F9F9F9',
         white: '#FFFFFF',
-        transparent: 'transparent'
-      },
-      lineHeight: {
-        heading: '120%',
-        normal: '150%',
-      },
-      letterSpacing: {
-        heading: '5%',
-        normal: '2%',
+        transparent: 'transparent',
       },
     },
-    extend: {},
+    extend: {
+      boxShadow: {
+        neutral: '0px 4px 80px 0px rgba(0, 0, 0, 0.05)',
+      },
+    },
   },
   plugins: [],
 };

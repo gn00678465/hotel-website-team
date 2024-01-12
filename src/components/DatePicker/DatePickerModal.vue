@@ -21,6 +21,7 @@
           <CalendarPanel
             key="leftPanel"
             showArrow="left"
+            :width="308"
             :current="leftPanelCurrent"
             :value="tempDates"
             @click="onClickArrow"
@@ -29,6 +30,7 @@
           <CalendarPanel
             key="rightPanel"
             showArrow="right"
+            :width="308"
             :current="rightPanelCurrent"
             :value="tempDates"
             @click="onClickArrow"
@@ -160,28 +162,13 @@ useToggleScrollbar(show, document.documentElement);
 </script>
 
 <style scoped>
-.modal-mask {
-  z-index: 9998;
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(10px);
-  @apply fixed left-0 top-0 h-full w-full;
-}
+@import url(./style/modal.css);
 
 .modal-container {
-  box-shadow: 0px 12px 40px 0px rgba(0, 0, 0, 0.1);
-  max-width: 740px;
   top: calc(v-bind(top) * 1px);
   right: calc(v-bind(right) * 1px);
+  box-shadow: 0px 12px 40px 0px rgba(0, 0, 0, 0.1);
+  max-width: 740px;
   @apply fixed w-full space-y-10 rounded-[20px] bg-neutral-white p-8;
-}
-
-.modal-enter-from,
-.modal-leave-to {
-  opacity: 0;
-}
-
-.modal-enter-active,
-.modal-leave-active {
-  transition: opacity 0.3s ease;
 }
 </style>

@@ -50,6 +50,16 @@
         </template>
       </section-tab>
     </div>
+
+    <div class="grid grid-cols-3">
+      <div class="col-span-2"></div>
+      <div class="col-span-1">
+        <DatePicker ref="datePickerRef" />
+      </div>
+    </div>
+    <BaseButton class="inline-block desktop:hidden" buttonType="primary" label="datepicker">
+    </BaseButton>
+
     <BaseInput class="my-7 max-w-60" v-model:inputValue="name"></BaseInput>
     <BaseButton class="my-7 max-w-60" buttonType="primary">
       <IconChecked class="h-6 w-6" />
@@ -70,18 +80,11 @@
     </button>
 
     <BaseModal v-model:open="isModalOpen" title="Title" content="content...." />
-
-    <div class="grid grid-cols-3">
-      <div class="col-span-2"></div>
-      <div class="col-span-1">
-        <DatePicker />
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { SectionTab, type Tab } from '@/components/SectionTab';
 import BaseSteppers from '@/components/Stepper/BaseSteppers.vue';
 import BaseModal from '@/components/BaseModal.vue';
@@ -128,6 +131,12 @@ const tabs = ref<Tab[]>([
 
 const tab = ref('oasis');
 const isModalOpen = ref(false);
+
+const datePickerRef = ref<InstanceType<typeof DatePicker> | null>(null);
+
+onMounted(() => {
+  datePickerRef.value?.['onModalShow']();
+});
 </script>
 
 <style scoped></style>

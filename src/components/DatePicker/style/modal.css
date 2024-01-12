@@ -1,0 +1,16 @@
+.modal-mask {
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  @apply fixed left-0 top-0 h-full w-full;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
