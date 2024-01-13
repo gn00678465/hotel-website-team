@@ -69,7 +69,7 @@ const emit = defineEmits<{
 
 const { current, showArrow, value, showWeekdays, weekdays, width } = toRefs(props);
 
-const calendar = ref(new Calendar({ current: unref(current), count: 7 * 6 }));
+const calendar = ref(new Calendar({ current: unref(current) }));
 
 function onClickArrow(direction: 'left' | 'right') {
   emit('click', direction);

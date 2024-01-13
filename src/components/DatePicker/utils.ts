@@ -9,7 +9,7 @@ export class Calendar {
   current: Date;
   count: number;
   constructor(options: Partial<{ today: Date; current: Date; count: number }> = {}) {
-    const { today = new Date(), current = new Date(), count = 35 } = options;
+    const { today = new Date(), current = new Date(), count = 7 * 6 } = options;
     this.today = today;
     this.current = current;
     this.count = count;

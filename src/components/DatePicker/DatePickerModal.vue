@@ -1,20 +1,20 @@
 <template>
-  <Transition name="modal">
+  <Transition name="fade">
     <div v-if="show" class="modal-mask" @click="onClickMask">
       <div class="modal-container" @click.stop>
         <div class="gap flex items-center justify-between">
           <ul class="space-y-2">
-            <li class="leading-heading tracking-heading text-h5 font-bold">{{ diffDays }} 晚</li>
+            <li class="text-h5 font-bold leading-heading tracking-heading">{{ diffDays }} 晚</li>
             <li
               class="font-regular flex items-center justify-center gap-x-2 text-body leading-normal tracking-normal"
             >
-              <span>{{ formatDate(tempDates?.[0]) }}</span
-              ><span>-</span><span>{{ formatDate(tempDates?.[1]) }}</span>
+              <span>{{ formatDate(dates?.[0]) }}</span
+              ><span>-</span><span>{{ formatDate(dates?.[1]) }}</span>
             </li>
           </ul>
           <div class="flex items-center gap-x-2">
-            <date-input label="入住" :date="formatDate(tempDates?.[0])"></date-input>
-            <date-input label="退房" :date="formatDate(tempDates?.[1])"></date-input>
+            <date-input label="入住" :date="formatDate(dates?.[0])"></date-input>
+            <date-input label="退房" :date="formatDate(dates?.[1])"></date-input>
           </div>
         </div>
         <div class="flex flex-col desktop:flex-row desktop:gap-x-[60px]">
@@ -23,18 +23,18 @@
             showArrow="left"
             :width="308"
             :current="leftPanelCurrent"
-            :value="tempDates"
+            :value="dates"
             @click="onClickArrow"
-            @select="onSelect"
+            @select="onDateSelect"
           />
           <CalendarPanel
             key="rightPanel"
             showArrow="right"
             :width="308"
             :current="rightPanelCurrent"
-            :value="tempDates"
+            :value="dates"
             @click="onClickArrow"
-            @select="onSelect"
+            @select="onDateSelect"
           />
         </div>
         <div class="flex w-full items-center justify-end gap-x-4">
@@ -54,6 +54,7 @@ import CalendarPanel from './CalendarPanel.vue';
 import DateInput from './DateInput.vue';
 import BaseButton from '../BaseButton.vue';
 import { diffDate, curryFormatDate } from './utils';
+import { useSelectDates } from './hooks';
 import { useToggleScrollbar } from '@/hooks';
 
 type Props = Partial<{
@@ -75,7 +76,7 @@ const emits = defineEmits<{
 }>();
 const { value, show, top, right } = toRefs(props);
 
-const tempDates = ref<[] | [number] | [number, number] | null>(value.value);
+const { dates, onDateSelect } = useSelectDates(value);
 
 const leftPanelCurrent = ref(new Date());
 const rightPanelCurrent = computed(() => {
@@ -84,8 +85,8 @@ const rightPanelCurrent = computed(() => {
 });
 
 const diffDays = computed<number>(() => {
-  if (tempDates.value && tempDates.value.length === 2) {
-    const [start, end] = tempDates.value;
+  if (dates.value && dates.value.length === 2) {
+    const [start, end] = dates.value;
     return diffDate(end, start, 'day');
   }
   return 0;
@@ -97,30 +98,6 @@ function onClickArrow(direction: 'left' | 'right') {
   }
   if (direction === 'right') {
     onNextMonth();
-  }
-}
-
-function onSelect(date: number) {
-  if (tempDates.value?.length === 2) {
-    tempDates.value = [];
-  }
-  if (tempDates.value === null) {
-    tempDates.value = [];
-  }
-  switch (tempDates.value?.length) {
-    case 0: {
-      tempDates.value = [date];
-      break;
-    }
-    case 1: {
-      const [d] = tempDates.value;
-      if (d > date) {
-        tempDates.value = [date, d];
-      } else {
-        tempDates.value = [d, date];
-      }
-      break;
-    }
   }
 }
 
@@ -137,15 +114,15 @@ function onNextMonth() {
 }
 
 function onClick() {
-  if (tempDates.value && tempDates.value.length === 2) {
-    emits('update:value', [tempDates.value[0], tempDates.value[1]]);
+  if (dates.value && dates.value.length === 2) {
+    emits('update:value', [dates.value[0], dates.value[1]]);
     emits('update:show', false);
   }
 }
 
 function onClear() {
-  tempDates.value = null;
-  emits('update:value', tempDates.value);
+  dates.value = null;
+  emits('update:value', dates.value);
   emits('update:show', false);
 }
 
@@ -155,7 +132,7 @@ function formatDate(date?: number): string {
 
 function onClickMask(e: Event) {
   e.stopImmediatePropagation();
-  emits('update:show', false);
+  onClear();
 }
 
 useToggleScrollbar(show, document.documentElement);

@@ -15,23 +15,27 @@
       :right="position.right"
       @update:value="(value) => (dates = value)"
     ></date-picker-modal>
-    <m-date-picker-modal v-else v-model:show="showModal"></m-date-picker-modal>
+    <m-date-picker-modal
+      v-else
+      v-model:show="showModal"
+      @update:value="(value) => (dates = value)"
+    ></m-date-picker-modal>
   </Teleport>
 </template>
 
 <script setup lang="ts">
 import { ref, watch, reactive } from 'vue';
-import { useMediaQuery } from '@vueuse/core';
+import { useMediaQuery, useElementBounding } from '@vueuse/core';
 import DateInput from './DateInput.vue';
 import DatePickerModal from './DatePickerModal.vue';
 import MDatePickerModal from './MDatePickerModal.vue';
-import { useBoolean, useRect } from '@/hooks';
+import { useBoolean } from '@/hooks';
 import { curryFormatDate } from './utils';
 
 const datePickerRef = ref<null | HTMLDivElement>(null);
 const { bool: showModal, setTrue: setModalShow } = useBoolean(false);
 const position = reactive({ top: 0, right: 0 });
-const datePickerRect = useRect(datePickerRef);
+const datePickerRect = useElementBounding(datePickerRef);
 const dates = ref<[number, number] | null>(null);
 const isDesktopScreen = useMediaQuery('(min-width: 768px)');
 
@@ -45,14 +49,13 @@ function onModalShow() {
 
 watch(showModal, (show) => {
   if (show) {
-    if (datePickerRect.value) {
-      position.top = datePickerRect.value.top - 32;
-      position.right = window.innerWidth - datePickerRect.value.right - 32;
-    }
+    position.top = datePickerRect.top.value - 32;
+    position.right = window.innerWidth - datePickerRect.right.value - 32;
   }
 });
 
 defineExpose({
+  dates,
   onModalShow,
 });
 </script>

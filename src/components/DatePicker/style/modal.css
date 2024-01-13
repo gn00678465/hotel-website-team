@@ -5,12 +5,41 @@
   @apply fixed left-0 top-0 h-full w-full;
 }
 
-.modal-enter-from,
-.modal-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 
-.modal-enter-active,
-.modal-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.3s ease;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  opacity: 0;
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.slide-fade-leave-active {
+  transition-delay: 0.15s;
+}
+
+.slide-fade-enter-from .modal-container,
+.slide-fade-leave-to .modal-container {
+  transform: translateY(100%);
+}
+
+.slide-fade-enter-active .modal-container {
+  transition: transform 0.15s ease;
+  transition-delay: 0.15s;
+}
+
+.slide-fade-leave-active .modal-container {
+  transition: transform 0.15s ease;
+  transition-delay: 0s;
 }

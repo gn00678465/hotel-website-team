@@ -21,6 +21,7 @@
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
     "pinia": "^2.1.7",
+    "smooth-scrollbar": "^8.8.4",
     "vue": "^3.3.11",
     "vue-router": "^4.2.5"
   },

@@ -57,7 +57,12 @@
         <DatePicker ref="datePickerRef" />
       </div>
     </div>
-    <BaseButton class="inline-block desktop:hidden" buttonType="primary" label="datepicker">
+    <BaseButton
+      class="inline-block desktop:hidden"
+      buttonType="primary"
+      label="datepicker"
+      @click="onOpenDatePicker"
+    >
     </BaseButton>
 
     <BaseInput class="my-7 max-w-60" v-model:inputValue="name"></BaseInput>
@@ -84,7 +89,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue';
+import { ref, reactive, nextTick } from 'vue';
 import { SectionTab, type Tab } from '@/components/SectionTab';
 import BaseSteppers from '@/components/Stepper/BaseSteppers.vue';
 import BaseModal from '@/components/BaseModal.vue';
@@ -134,9 +139,11 @@ const isModalOpen = ref(false);
 
 const datePickerRef = ref<InstanceType<typeof DatePicker> | null>(null);
 
-onMounted(() => {
-  datePickerRef.value?.['onModalShow']();
-});
+function onOpenDatePicker() {
+  nextTick(() => {
+    datePickerRef.value?.['onModalShow']();
+  });
+}
 </script>
 
 <style scoped></style>
