@@ -1,8 +1,8 @@
 <template>
-  <div class="relative w-full">
+  <div class="relative w-full overflow-hidden">
     <TransitionGroup
       name="slide-list"
-      class="flex h-full transform-gpu overflow-hidden"
+      class="flex h-full transform-gpu"
       :class="wrapperClass"
       tag="ul"
     >
@@ -30,7 +30,6 @@
 
 <script setup lang="ts">
 import { toRefs, ref, useSlots, computed, onMounted, watchEffect } from 'vue';
-// import { useIntervalFn } from '@vueuse/core';
 
 interface Props {
   wrapperClass: string;
@@ -52,10 +51,6 @@ const images = computed(() => slots.default?.() ?? []);
 
 const currentIndex = ref(0);
 const cancelInterval = ref(0);
-
-// const { pause, resume, isActive } = useIntervalFn(() => {
-//   currentIndex.value = (currentIndex.value + 1 + images.value.length) % images.value.length;
-// }, interval);
 
 function onChange(index: number) {
   currentIndex.value = index;
