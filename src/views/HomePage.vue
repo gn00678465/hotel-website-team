@@ -68,7 +68,34 @@
       </div>
     </div>
   </div>
-  <section>Section1</section>
+  <section
+    class="desktop:py-30 desktop:px-78 relative flex flex-col gap-y-10 bg-primary-10 px-3 py-20 desktop:flex-row desktop:gap-x-20 desktop:gap-y-0"
+  >
+    <div class="text-left text-h3 font-bold tracking-heading text-primary-100 desktop:text-h1">
+      <p class="mb-1 leading-heading">最新</p>
+      <p class="mb-6 leading-heading desktop:mb-10">消息</p>
+      <div class="bg-primary-to-l h-[2px] w-[140px]"></div>
+    </div>
+    <div class="space-y-10">
+      <news-item
+        v-for="(news, index) in newsArr"
+        :key="index"
+        :image="news.image"
+        :title="news.title"
+        :describe="news.describe"
+      ></news-item>
+    </div>
+    <img
+      :src="dot"
+      alt="dot"
+      class="desktop:top-25 desktop:right-45 w-25 h-25 absolute right-6 top-10 select-none desktop:h-auto desktop:w-auto"
+    />
+    <img
+      :src="dot"
+      alt="dot"
+      class="desktop:left-50 w-25 h-25 absolute -bottom-15 left-6 select-none desktop:-bottom-20 desktop:h-auto desktop:w-auto"
+    />
+  </section>
   <section>Section1</section>
   <section>Section1</section>
   <section>Section1</section>
@@ -82,9 +109,34 @@ import BaseNav from '@/components/layout/BaseNav.vue';
 import BaseCarousel from '@/components/BaseCarousel.vue';
 import HeroButton from '@/components/HeroButton.vue';
 import homePageBanner from '@/assets/images/homepage-banner.jpg';
+import NewsItem from '@/components/NewsItem.vue';
+import dot from '@/assets/images/dot.svg';
+import image1 from '@/assets/images/homepage-1.jpg';
+import image2 from '@/assets/images/homepage-2.jpg';
+import image3 from '@/assets/images/homepage-3.jpg';
 
 const navRef = ref<InstanceType<typeof BaseNav> | null>(null);
 const navRect = useElementBounding(navRef);
+const newsArr = ref([
+  {
+    image: image1,
+    title: '秋季旅遊，豪華享受方案',
+    describe:
+      '秋天就是要來場豪華的旅遊！我們為您準備了一系列的秋季特別方案，包括舒適的住宿、美食饗宴，以及精彩的活動。不論您是想來一趟浪漫之旅，還是想和家人共度美好時光，都能在這裡找到最適合的方案。',
+  },
+  {
+    image: image2,
+    title: '輕鬆住房專案',
+    describe:
+      '我們知道，有時候您只是需要一個舒適的地方放鬆心情。因此，我們推出了「輕鬆住房專案」，讓您無壓力地享受住宿。不管是短期的休息，還是長期的住宿，我們都會以最貼心的服務，讓您感到賓至如歸。',
+  },
+  {
+    image: image3,
+    title: '耶誕快樂，住房送禮',
+    describe:
+      '聖誕節來臨，我們為您準備了特別的禮物！在聖誕期間訂房，不僅有特別優惠，還會送上我們精心準備的聖誕禮物。讓我們一起慶祝這個溫馨的節日吧！',
+  },
+]);
 
 console.log(navRect.height);
 </script>
@@ -101,9 +153,9 @@ console.log(navRect.height);
 }
 
 .divider {
-  background: linear-gradient(180deg, #be9c7c 0%, #fff 100%);
+  @apply bg-primary-to-b;
   @media (min-width: 768px) {
-    background: linear-gradient(90deg, #be9c7c 0%, #fff 100%);
+    @apply bg-primary-to-l;
   }
 }
 

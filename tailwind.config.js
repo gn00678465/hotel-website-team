@@ -37,7 +37,7 @@ export default {
       normal: '150%',
     },
     letterSpacing: {
-      '': '1px',
+      DEFAULT: '1px',
       heading: '5%',
       normal: '2%',
     },
@@ -87,9 +87,20 @@ export default {
       spacing: {
         15: '60px',
         18: '72px',
+        25: '100px',
         29: '116px',
         30: '120px',
+        45: '180px',
         50: '200px',
+        78: '312px',
+      },
+      backgroundImage: {
+        'primary-to-l': 'linear-gradient(90deg, #be9c7c 0%, #fff 100%)',
+        'primary-to-b': 'linear-gradient(180deg, #be9c7c 0%, #fff 100%)',
+      },
+      borderRadius: {
+        10: '40px',
+        20: '80px',
       },
     },
   },

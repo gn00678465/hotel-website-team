@@ -55,7 +55,9 @@ const cancelInterval = ref(0);
 function onChange(index: number) {
   currentIndex.value = index;
   cancelAutoplay();
-  handleAutoplay();
+  if (autoplay.value) {
+    handleAutoplay();
+  }
 }
 
 function handleAutoplay(): void {
