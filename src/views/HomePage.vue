@@ -83,6 +83,7 @@
         :image="news.image"
         :title="news.title"
         :describe="news.describe"
+        class="relative z-10"
       ></news-item>
     </div>
     <img
@@ -93,10 +94,51 @@
     <img
       :src="dot"
       alt="dot"
-      class="desktop:left-50 w-25 h-25 absolute -bottom-15 left-6 select-none desktop:-bottom-20 desktop:h-auto desktop:w-auto"
+      class="desktop:left-50 w-25 h-25 absolute -bottom-15 left-6 z-10 select-none desktop:-bottom-20 desktop:h-auto desktop:w-auto"
     />
   </section>
-  <section>Section1</section>
+  <section class="pb-30 desktop:pt-30 desktop:pb-50 relative bg-neutral-black pt-20">
+    <img :src="image4" alt="" class="h-[594px] w-full object-cover desktop:h-[672px]" />
+    <div
+      class="desktop:top-30 desktop:pl-141 desktop:pr-78 absolute left-0 top-20 w-full pl-10 pr-5 pt-10 desktop:pt-20"
+    >
+      <div class="about-box p-6 desktop:p-20">
+        <div
+          class="mb-10 flex items-center text-left text-h3 font-bold text-neutral-white desktop:mb-20 desktop:text-h1"
+        >
+          <div class="mr-10 flex-shrink-0">
+            <p class="mb-1 leading-heading tracking-heading">關於</p>
+            <p class="leading-heading tracking-heading">我們</p>
+          </div>
+          <div class="inline h-[2px] w-full bg-neutral-white desktop:w-[165px]"></div>
+        </div>
+        <ul class="space-y-4 desktop:space-y-10">
+          <li
+            class="text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
+          >
+            享樂酒店，位於美麗島高雄的心臟地帶，是這座城市的璀璨瑰寶與傲人地標。
+            我們的存在，不僅僅是為了提供奢華的住宿體驗，更是為了將高雄的美麗與活力，獻給每一位蒞臨的旅客。
+          </li>
+          <li
+            class="text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
+          >
+            我們的酒店，擁有時尚典雅的裝潢，每一個細節都充滿著藝術與設計的精緻。
+            我們的員工，都以熱情的服務與專業的態度，讓每一位客人都能感受到賓至如歸的溫暖。
+          </li>
+          <li
+            class="text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
+          >
+            在這裡，您可以遙望窗外，欣賞高雄的城市景色，感受這座城市的繁華與活力；您也可以舒適地坐在我們的餐廳，品嚐精緻的佳餚，體驗無與倫比的味覺盛宴。
+          </li>
+          <li
+            class="text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
+          >
+            享樂酒店，不僅是您在高雄的住宿之選，更是您感受高雄魅力的最佳舞台。我們期待著您的蒞臨，讓我們共同編織一段難忘的高雄故事。
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
   <section>Section1</section>
   <section>Section1</section>
   <section>Section1</section>
@@ -114,6 +156,7 @@ import dot from '@/assets/images/dot.svg';
 import image1 from '@/assets/images/homepage-1.jpg';
 import image2 from '@/assets/images/homepage-2.jpg';
 import image3 from '@/assets/images/homepage-3.jpg';
+import image4 from '@/assets/images/homepage-4.jpg';
 
 const navRef = ref<InstanceType<typeof BaseNav> | null>(null);
 const navRect = useElementBounding(navRef);
@@ -170,6 +213,17 @@ console.log(navRect.height);
   @media (min-width: 768px) {
     width: calc(100% - 40px);
     border-radius: 80px;
+  }
+}
+
+.about-box {
+  border-radius: 40px 40px 0px 40px;
+  border-bottom: 1px solid var(--Neutral-0, #fff);
+  border-left: 1px solid var(--Neutral-0, #fff);
+  background: linear-gradient(180deg, rgba(20, 15, 10, 0.8) 0%, rgba(190, 156, 124, 0.8) 100%);
+  backdrop-filter: blur(10px);
+  @media (min-width: 768px) {
+    border-radius: 80px 80px 0px 80px;
   }
 }
 </style>

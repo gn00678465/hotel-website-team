@@ -93,6 +93,7 @@ export default {
         45: '180px',
         50: '200px',
         78: '312px',
+        141: '564px',
       },
       backgroundImage: {
         'primary-to-l': 'linear-gradient(90deg, #be9c7c 0%, #fff 100%)',
