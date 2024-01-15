@@ -42,7 +42,7 @@
       />
     </base-carousel>
     <div
-      class="absolute left-0 top-[72px] z-20 flex h-full w-full flex-col items-center justify-start gap-y-10 bg-neutral-transparent px-5 pt-10 desktop:flex-row desktop:gap-y-0 desktop:px-20"
+      class="desktop:pt-29 desktop:top-30 top-18 absolute left-0 z-20 flex w-full flex-col items-center justify-start gap-y-10 bg-neutral-transparent px-5 pt-10 desktop:flex-row desktop:gap-y-0 desktop:px-20"
     >
       <div
         class="flex flex-grow-0 flex-col items-center justify-center font-bold text-primary-100 desktop:flex-grow desktop:items-start"
@@ -53,14 +53,16 @@
         </p>
         <div class="divider h-[83px] w-[2px] bg-primary-120 desktop:h-[2px] desktop:w-full"></div>
       </div>
-      <div class="py-15 relative pr-5">
+      <div class="desktop:pr-50 desktop:ml-50 relative py-15 pr-5 desktop:py-24">
         <div class="relative z-10 font-bold text-neutral-white">
-          <p class="text-h1 leading-heading">高雄</p>
-          <p class="mb-6 text-h1 leading-heading">豪華住宿之選</p>
-          <p class="mb-10 text-body leading-normal text-neutral-40">
+          <p class="text-h1 leading-heading tracking-heading desktop:text-h0">高雄</p>
+          <p class="mb-6 text-h1 leading-heading tracking-heading desktop:text-h0">豪華住宿之選</p>
+          <p
+            class="mb-10 text-body leading-normal tracking-normal text-neutral-40 desktop:text-h3 desktop:font-semibold desktop:leading-heading desktop:tracking-heading"
+          >
             我們致力於為您提供無與倫比的奢華體驗與優質服務
           </p>
-          <hero-button class="p-5"></hero-button>
+          <hero-button>立即訂房</hero-button>
         </div>
         <div class="box absolute right-0 top-0 z-0"></div>
       </div>
@@ -113,5 +115,9 @@ console.log(navRect.height);
   border-right: 1px solid #f5f7f9;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
   backdrop-filter: blur(10px);
+  @media (min-width: 768px) {
+    width: calc(100% - 40px);
+    border-radius: 80px;
+  }
 }
 </style>
