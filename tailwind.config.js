@@ -84,6 +84,9 @@ export default {
       boxShadow: {
         neutral: '0px 4px 80px 0px rgba(0, 0, 0, 0.05)',
       },
+      spacing: {
+        15: '60px',
+      },
     },
   },
   plugins: [],
