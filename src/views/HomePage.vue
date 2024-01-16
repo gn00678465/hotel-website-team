@@ -42,7 +42,7 @@
       />
     </base-carousel>
     <div
-      class="desktop:pt-29 desktop:top-30 top-18 absolute left-0 z-20 flex w-full flex-col items-center justify-start gap-y-10 bg-neutral-transparent px-5 pt-10 desktop:flex-row desktop:gap-y-0 desktop:px-20"
+      class="absolute left-0 top-18 z-20 flex w-full flex-col items-center justify-start gap-y-10 bg-neutral-transparent px-5 pt-10 desktop:top-30 desktop:flex-row desktop:gap-y-0 desktop:px-20 desktop:pt-29"
     >
       <div
         class="flex flex-grow-0 flex-col items-center justify-center font-bold text-primary-100 desktop:flex-grow desktop:items-start"
@@ -53,7 +53,7 @@
         </p>
         <div class="divider h-[83px] w-[2px] bg-primary-120 desktop:h-[2px] desktop:w-full"></div>
       </div>
-      <div class="desktop:pr-50 desktop:ml-50 relative py-15 pr-5 desktop:py-24">
+      <div class="relative py-15 pr-5 desktop:ml-50 desktop:py-24 desktop:pr-50">
         <div class="relative z-10 font-bold text-neutral-white">
           <p class="text-h1 leading-heading tracking-heading desktop:text-h0">高雄</p>
           <p class="mb-6 text-h1 leading-heading tracking-heading desktop:text-h0">豪華住宿之選</p>
@@ -69,12 +69,12 @@
     </div>
   </div>
   <section
-    class="desktop:py-30 desktop:px-78 relative flex flex-col gap-y-10 bg-primary-10 px-3 py-20 desktop:flex-row desktop:gap-x-20 desktop:gap-y-0"
+    class="relative flex flex-col gap-y-10 bg-primary-10 px-3 py-20 desktop:flex-row desktop:gap-x-20 desktop:gap-y-0 desktop:px-78 desktop:py-30"
   >
     <div class="text-left text-h3 font-bold tracking-heading text-primary-100 desktop:text-h1">
       <p class="mb-1 leading-heading">最新</p>
       <p class="mb-6 leading-heading desktop:mb-10">消息</p>
-      <div class="bg-primary-to-l h-[2px] w-[140px]"></div>
+      <div class="h-[2px] w-[140px] bg-primary-to-l"></div>
     </div>
     <div class="space-y-10">
       <news-item
@@ -89,18 +89,18 @@
     <img
       :src="dot"
       alt="dot"
-      class="desktop:top-25 desktop:right-45 w-25 h-25 absolute right-6 top-10 select-none desktop:h-auto desktop:w-auto"
+      class="absolute right-6 top-10 h-25 w-25 select-none desktop:right-45 desktop:top-25 desktop:h-auto desktop:w-auto"
     />
     <img
       :src="dot"
       alt="dot"
-      class="desktop:left-50 w-25 h-25 absolute -bottom-15 left-6 z-10 select-none desktop:-bottom-20 desktop:h-auto desktop:w-auto"
+      class="absolute -bottom-15 left-6 z-10 h-25 w-25 select-none desktop:-bottom-20 desktop:left-50 desktop:h-auto desktop:w-auto"
     />
   </section>
-  <section class="pb-30 desktop:pt-30 desktop:pb-50 relative bg-neutral-black pt-20">
+  <section class="relative bg-neutral-black pb-30 pt-20 desktop:pb-50 desktop:pt-30">
     <img :src="image4" alt="" class="h-[594px] w-full object-cover desktop:h-[672px]" />
     <div
-      class="desktop:top-30 desktop:pl-141 desktop:pr-78 absolute left-0 top-20 w-full pl-10 pr-5 pt-10 desktop:pt-20"
+      class="absolute left-0 top-20 w-full pl-10 pr-5 pt-10 desktop:top-30 desktop:pl-141 desktop:pr-78 desktop:pt-20"
     >
       <div class="about-box p-6 desktop:p-20">
         <div
@@ -139,7 +139,10 @@
       </div>
     </div>
   </section>
-  <section>Section1</section>
+  <section class="relative">
+    <curve-h class="absolute -top-6 left-20" :count="10"></curve-h>
+    <see-more-item :images="seeMore"></see-more-item>
+  </section>
   <section>Section1</section>
   <section>Section1</section>
 </template>
@@ -151,12 +154,16 @@ import BaseNav from '@/components/layout/BaseNav.vue';
 import BaseCarousel from '@/components/BaseCarousel.vue';
 import HeroButton from '@/components/HeroButton.vue';
 import homePageBanner from '@/assets/images/homepage-banner.jpg';
-import NewsItem from '@/components/NewsItem.vue';
+import NewsItem from '@/components/HomePage/NewsItem.vue';
 import dot from '@/assets/images/dot.svg';
 import image1 from '@/assets/images/homepage-1.jpg';
 import image2 from '@/assets/images/homepage-2.jpg';
 import image3 from '@/assets/images/homepage-3.jpg';
 import image4 from '@/assets/images/homepage-4.jpg';
+import image5 from '@/assets/images/homepage-5.jpg';
+import CurveH from '@/components/background/CurveH.vue';
+import SeeMoreItem from '@/components/HomePage/SeeMoreItem.vue';
+import SeeMoreBg from '@/assets/images/home-bg-1.svg';
 
 const navRef = ref<InstanceType<typeof BaseNav> | null>(null);
 const navRect = useElementBounding(navRef);
@@ -181,7 +188,7 @@ const newsArr = ref([
   },
 ]);
 
-console.log(navRect.height);
+const seeMore = ref([image5]);
 </script>
 
 <style scoped lang="scss">
