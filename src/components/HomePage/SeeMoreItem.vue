@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col justify-center gap-y-6 bg-neutral-black px-3 py-20 desktop:flex-row desktop:items-end desktop:gap-x-20 desktop:gap-y-0 desktop:py-30 desktop:pl-0 desktop:pr-78"
+    class="relative flex flex-col justify-center gap-y-6 bg-neutral-black px-3 py-20 desktop:flex-row desktop:items-end desktop:gap-x-20 desktop:gap-y-0 desktop:py-30 desktop:pl-0 desktop:pr-78"
   >
     <base-carousel
       class="rounded-r-lg"
@@ -17,7 +17,7 @@
       />
     </base-carousel>
     <ul
-      class="space-y-6 text-neutral-white desktop:w-[628px] desktop:flex-shrink-0 desktop:space-y-10"
+      class="space-y-6 text-neutral-white desktop:static desktop:w-[628px] desktop:flex-shrink-0 desktop:space-y-10"
     >
       <li class="space-y-2 desktop:space-y-4">
         <p class="text-h4 font-bold leading-heading tracking-heading desktop:text-h2">尊爵雙人房</p>
@@ -55,4 +55,4 @@ const props = withDefaults(defineProps<Partial<Props>>(), {
 const { images } = toRefs(props);
 </script>
 
-<style scoped></style>
+<style scoped lang="scss"></style>

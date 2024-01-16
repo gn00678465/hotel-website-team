@@ -103,15 +103,10 @@
       class="absolute left-0 top-20 w-full pl-10 pr-5 pt-10 desktop:top-30 desktop:pl-141 desktop:pr-78 desktop:pt-20"
     >
       <div class="about-box p-6 desktop:p-20">
-        <div
-          class="mb-10 flex items-center text-left text-h3 font-bold text-neutral-white desktop:mb-20 desktop:text-h1"
-        >
-          <div class="mr-10 flex-shrink-0">
-            <p class="mb-1 leading-heading tracking-heading">關於</p>
-            <p class="leading-heading tracking-heading">我們</p>
-          </div>
-          <div class="inline h-[2px] w-full bg-neutral-white desktop:w-[165px]"></div>
-        </div>
+        <section-heading textClass="text-neutral-white" barClass="bg-neutral-white">
+          <template #above>關於</template>
+          <template #below>我們</template>
+        </section-heading>
         <ul class="space-y-4 desktop:space-y-10">
           <li
             class="text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
@@ -140,10 +135,23 @@
     </div>
   </section>
   <section class="relative">
-    <curve-h class="absolute -top-6 left-20" :count="10"></curve-h>
     <see-more-item :images="seeMore"></see-more-item>
   </section>
-  <section>Section1</section>
+  <section class="bg-primary-40 px-3 py-20 desktop:py-30 desktop:pl-78 desktop:pr-0">
+    <section-heading
+      class="mb-10 w-[306px] desktop:mb-20 desktop:w-auto"
+      textClass="text-primary-100"
+      barClass="bg-primary-to-l"
+    >
+      <template #above>佳餚</template>
+      <template #below>美饌</template>
+    </section-heading>
+    <ul>
+      <li>
+        <food-card :image="image5"></food-card>
+      </li>
+    </ul>
+  </section>
   <section>Section1</section>
 </template>
 
@@ -156,6 +164,7 @@ import HeroButton from '@/components/HeroButton.vue';
 import homePageBanner from '@/assets/images/homepage-banner.jpg';
 import NewsItem from '@/components/HomePage/NewsItem.vue';
 import dot from '@/assets/images/dot.svg';
+import SectionHeading from '@/components/HomePage/SectionHeading.vue';
 import image1 from '@/assets/images/homepage-1.jpg';
 import image2 from '@/assets/images/homepage-2.jpg';
 import image3 from '@/assets/images/homepage-3.jpg';
@@ -163,7 +172,7 @@ import image4 from '@/assets/images/homepage-4.jpg';
 import image5 from '@/assets/images/homepage-5.jpg';
 import CurveH from '@/components/background/CurveH.vue';
 import SeeMoreItem from '@/components/HomePage/SeeMoreItem.vue';
-import SeeMoreBg from '@/assets/images/home-bg-1.svg';
+import FoodCard from '@/components/HomePage/FoodCard.vue';
 
 const navRef = ref<InstanceType<typeof BaseNav> | null>(null);
 const navRect = useElementBounding(navRef);
