@@ -32,15 +32,6 @@ export default {
       body2: '14px',
       tiny: '12px',
     },
-    lineHeight: {
-      heading: '120%',
-      normal: '150%',
-    },
-    letterSpacing: {
-      DEFAULT: '1px',
-      heading: '5%',
-      normal: '2%',
-    },
     colors: {
       primary: {
         120: '#7B6651',
@@ -102,6 +93,15 @@ export default {
       borderRadius: {
         10: '40px',
         20: '80px',
+      },
+      lineHeight: {
+        heading: '1.2',
+        normal: '1.5',
+      },
+      letterSpacing: {
+        DEFAULT: '1px',
+        heading: '0.05em',
+        normal: '0.02em',
       },
     },
   },
