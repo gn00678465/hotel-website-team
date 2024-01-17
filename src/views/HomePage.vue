@@ -137,7 +137,7 @@
       class="w-full overflow-auto whitespace-nowrap"
       v-smooth-scrollbar="{ plugins: { overscroll: false } }"
     >
-      <ul class="hide-scrollbar space-x-6 pr-3">
+      <ul class="space-x-6 pr-3">
         <li
           v-for="(food, idx) of foods"
           :key="idx"
@@ -148,7 +148,53 @@
       </ul>
     </div>
   </section>
-  <section>Section1</section>
+  <section class="bg-neutral-bg pb-10 pt-20">
+    <div class="mx-auto px-3 desktop:max-w-[67.5%] desktop:px-0">
+      <section-heading
+        class="mb-10 w-[300px] desktop:mb-20 desktop:w-auto"
+        textClass="text-primary-100"
+        barClass="bg-primary-to-l"
+      >
+        <template #above>交通</template>
+        <template #below>方式</template>
+      </section-heading>
+      <div class="mb-6 desktop:mb-10">
+        <p class="mb-4 text-body font-bold leading-normal tracking-normal text-neutral-white">
+          台灣高雄市新興區六角路123號
+        </p>
+        <img
+          :src="map"
+          alt="map"
+          class="h-[360px] w-full overflow-hidden rounded-lg object-cover object-center"
+        />
+      </div>
+      <ul
+        class="flex flex-col items-start gap-y-6 desktop:flex-row desktop:gap-x-6 desktop:gap-y-0"
+      >
+        <li class="space-y-2 text-neutral-white">
+          <IconCar class="desktop:mb-4" :size="48" color="#BE9C7C" />
+          <p class="text-body font-bold leading-normal tracking-normal">自行開車</p>
+          <p class="text-body2 font-normal leading-normal tracking-normal">
+            如果您選擇自行開車，可以透過國道一號下高雄交流道，往市區方向行駛，並依路標指示即可抵達「享樂酒店」。飯店內設有停車場，讓您停車方便。
+          </p>
+        </li>
+        <li class="space-y-2 text-neutral-white">
+          <IconTrain class="desktop:mb-4" :size="48" color="#BE9C7C" />
+          <p class="text-body font-bold leading-normal tracking-normal">高鐵/火車</p>
+          <p class="text-body2 font-normal leading-normal tracking-normal">
+            如果您是搭乘高鐵或火車，可於左營站下車，外頭有計程車站，搭乘計程車約20分鐘即可抵達。或者您也可以轉乘捷運紅線至中央公園站下車，步行約10分鐘便可抵達。
+          </p>
+        </li>
+        <li class="space-y-2 text-neutral-white">
+          <IconLuxurycar class="desktop:mb-4" :size="48" color="#BE9C7C" />
+          <p class="text-body font-bold leading-normal tracking-normal">禮賓車服務</p>
+          <p class="text-body2 font-normal leading-normal tracking-normal">
+            承億酒店提供禮賓專車接送服務，但因目的地遠近會有不同的收費，請撥打電話將由專人為您服務洽詢專線：(07)123-4567
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -166,6 +212,10 @@ import { FoodCard, NewsCard, SeeMoreCard, SectionHeading } from '@/components/Ho
 import type { FoodInfo, NewsInfo } from '@/components/HomePage';
 import vSmoothScrollbar from '@/directives/smoothScrollbar';
 import { foodContent, newsContent, aboutContent } from '@/config/homepage';
+import IconCar from '@/components/icons/IconCar.vue';
+import IconTrain from '@/components/icons/IconTrain.vue';
+import IconLuxurycar from '@/components/icons/IconLuxurycar.vue';
+import map from '@/assets/images/homepage/map.png';
 
 const navRef = ref<InstanceType<typeof BaseNav> | null>(null);
 const navRect = useElementBounding(navRef);
