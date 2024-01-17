@@ -1,6 +1,6 @@
 <template>
   <div
-    class="group flex cursor-pointer items-center justify-center rounded-lg bg-neutral-white p-5 text-neutral-black duration-300 hover:justify-end hover:bg-primary-100 hover:text-neutral-white desktop:p-10"
+    class="group cursor-pointer rounded-lg bg-neutral-white p-5 text-neutral-black transition-all duration-300 hover:bg-primary-100 hover:text-neutral-white desktop:p-10"
   >
     <div class="flex w-full items-center justify-end">
       <div
@@ -9,7 +9,7 @@
         <slot>{{ label }}</slot>
       </div>
       <div
-        class="h-[1px] w-20 bg-neutral-black duration-300 group-hover:w-3/5 group-hover:bg-neutral-white desktop:w-[150px] desktop:group-hover:w-[120px]"
+        class="h-[1px] w-20 bg-neutral-black duration-300 group-hover:w-15 group-hover:bg-neutral-white group-active:w-15 desktop:w-[150px] desktop:group-hover:w-30 desktop:group-active:w-30"
       ></div>
     </div>
   </div>
