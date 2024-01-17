@@ -22,13 +22,18 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { toRefs } from 'vue';
-interface Props {
+<script lang="ts">
+export type NewsInfo = {
   image: string;
-  alt: string;
   title: string;
   describe: string;
+};
+</script>
+
+<script setup lang="ts">
+import { toRefs } from 'vue';
+interface Props extends NewsInfo {
+  alt: string;
 }
 
 const props = withDefaults(defineProps<Partial<Props>>(), {

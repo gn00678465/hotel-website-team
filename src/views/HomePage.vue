@@ -77,14 +77,14 @@
       <div class="h-[2px] w-[140px] bg-primary-to-l"></div>
     </div>
     <div class="space-y-10">
-      <news-item
+      <news-card
         v-for="(news, index) in newsArr"
         :key="index"
         :image="news.image"
         :title="news.title"
         :describe="news.describe"
         class="relative z-10"
-      ></news-item>
+      ></news-card>
     </div>
     <img
       :src="dot"
@@ -109,33 +109,18 @@
         </section-heading>
         <ul class="space-y-4 desktop:space-y-10">
           <li
-            class="text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
+            v-for="(txt, idx) of aboutContent"
+            :key="idx"
+            class="whitespace-pre-line text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
           >
-            享樂酒店，位於美麗島高雄的心臟地帶，是這座城市的璀璨瑰寶與傲人地標。
-            我們的存在，不僅僅是為了提供奢華的住宿體驗，更是為了將高雄的美麗與活力，獻給每一位蒞臨的旅客。
-          </li>
-          <li
-            class="text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
-          >
-            我們的酒店，擁有時尚典雅的裝潢，每一個細節都充滿著藝術與設計的精緻。
-            我們的員工，都以熱情的服務與專業的態度，讓每一位客人都能感受到賓至如歸的溫暖。
-          </li>
-          <li
-            class="text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
-          >
-            在這裡，您可以遙望窗外，欣賞高雄的城市景色，感受這座城市的繁華與活力；您也可以舒適地坐在我們的餐廳，品嚐精緻的佳餚，體驗無與倫比的味覺盛宴。
-          </li>
-          <li
-            class="text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
-          >
-            享樂酒店，不僅是您在高雄的住宿之選，更是您感受高雄魅力的最佳舞台。我們期待著您的蒞臨，讓我們共同編織一段難忘的高雄故事。
+            {{ txt }}
           </li>
         </ul>
       </div>
     </div>
   </section>
   <section class="relative">
-    <see-more-item :images="seeMore"></see-more-item>
+    <see-more-card :images="seeMore"></see-more-card>
   </section>
   <section
     class="overflow-x-hidden bg-primary-40 py-20 pl-3 desktop:py-30 desktop:pl-78 desktop:pr-0"
@@ -173,88 +158,20 @@ import BaseNav from '@/components/layout/BaseNav.vue';
 import BaseCarousel from '@/components/BaseCarousel.vue';
 import HeroButton from '@/components/HeroButton.vue';
 import homePageBanner from '@/assets/images/homepage-banner.jpg';
-import NewsItem from '@/components/HomePage/NewsItem.vue';
 import dot from '@/assets/images/dot.svg';
-import SectionHeading from '@/components/HomePage/SectionHeading.vue';
-import image1 from '@/assets/images/homepage-1.jpg';
-import image2 from '@/assets/images/homepage-2.jpg';
-import image3 from '@/assets/images/homepage-3.jpg';
 import image4 from '@/assets/images/homepage-4.jpg';
 import image5 from '@/assets/images/homepage-5.jpg';
 import CurveH from '@/components/background/CurveH.vue';
-import SeeMoreItem from '@/components/HomePage/SeeMoreItem.vue';
-import FoodCard, { type FoodInfo } from '@/components/HomePage/FoodCard.vue';
+import { FoodCard, NewsCard, SeeMoreCard, SectionHeading } from '@/components/HomePage';
+import type { FoodInfo, NewsInfo } from '@/components/HomePage';
 import vSmoothScrollbar from '@/directives/smoothScrollbar';
+import { foodContent, newsContent, aboutContent } from '@/config/homepage';
 
 const navRef = ref<InstanceType<typeof BaseNav> | null>(null);
 const navRect = useElementBounding(navRef);
-const newsArr = ref([
-  {
-    image: image1,
-    title: '秋季旅遊，豪華享受方案',
-    describe:
-      '秋天就是要來場豪華的旅遊！我們為您準備了一系列的秋季特別方案，包括舒適的住宿、美食饗宴，以及精彩的活動。不論您是想來一趟浪漫之旅，還是想和家人共度美好時光，都能在這裡找到最適合的方案。',
-  },
-  {
-    image: image2,
-    title: '輕鬆住房專案',
-    describe:
-      '我們知道，有時候您只是需要一個舒適的地方放鬆心情。因此，我們推出了「輕鬆住房專案」，讓您無壓力地享受住宿。不管是短期的休息，還是長期的住宿，我們都會以最貼心的服務，讓您感到賓至如歸。',
-  },
-  {
-    image: image3,
-    title: '耶誕快樂，住房送禮',
-    describe:
-      '聖誕節來臨，我們為您準備了特別的禮物！在聖誕期間訂房，不僅有特別優惠，還會送上我們精心準備的聖誕禮物。讓我們一起慶祝這個溫馨的節日吧！',
-  },
-]);
-
+const newsArr = ref(newsContent<NewsInfo>());
 const seeMore = ref([image5]);
-
-const foods = ref<FoodInfo[]>([
-  {
-    name: '海霸',
-    days: 'SUN-MON',
-    time: '11:00 - 20:30',
-    image: image5,
-  },
-  {
-    name: '海霸',
-    days: 'SUN-MON',
-    time: '11:00 - 20:30',
-    image: image5,
-  },
-  {
-    name: '海霸',
-    days: 'SUN-MON',
-    time: '11:00 - 20:30',
-    image: image5,
-  },
-  {
-    name: '海霸',
-    days: 'SUN-MON',
-    time: '11:00 - 20:30',
-    image: image5,
-  },
-  {
-    name: '海霸',
-    days: 'SUN-MON',
-    time: '11:00 - 20:30',
-    image: image5,
-  },
-  {
-    name: '海霸',
-    days: 'SUN-MON',
-    time: '11:00 - 20:30',
-    image: image5,
-  },
-  {
-    name: '海霸',
-    days: 'SUN-MON',
-    time: '11:00 - 20:30',
-    image: image5,
-  },
-]);
+const foods = ref<FoodInfo[]>(foodContent<FoodInfo>());
 </script>
 
 <style scoped lang="scss">
@@ -291,8 +208,8 @@ const foods = ref<FoodInfo[]>([
 
 .about-box {
   border-radius: 40px 40px 0px 40px;
-  border-bottom: 1px solid var(--Neutral-0, #fff);
-  border-left: 1px solid var(--Neutral-0, #fff);
+  border-bottom: 1px solid #fff;
+  border-left: 1px solid #fff;
   background: linear-gradient(180deg, rgba(20, 15, 10, 0.8) 0%, rgba(190, 156, 124, 0.8) 100%);
   backdrop-filter: blur(10px);
   @media (min-width: 768px) {
@@ -304,8 +221,8 @@ const foods = ref<FoodInfo[]>([
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
   overflow-y: scroll;
-}
-.hide-scrollbar::-webkit-scrollbar {
-  display: none; /* for Chrome, Safari, and Opera */
+  &::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
 }
 </style>

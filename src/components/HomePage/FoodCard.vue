@@ -7,15 +7,15 @@
       class="aspect-[5/8] w-full object-cover object-center desktop:aspect-[52/75]"
     />
     <div
-      class="card-content absolute bottom-0 left-0 right-0 w-full space-y-4 p-3 text-neutral-white"
+      class="card-content absolute bottom-0 left-0 right-0 w-full space-y-4 p-3 text-neutral-white desktop:p-6"
     >
       <p class="mb-4 flex items-center font-bold">
-        <span class="mr-auto text-h4">海霸</span>
-        <span class="mr-2 text-body2">SUN-MON</span>
-        <span class="text-body2">11:00 - 20:30</span>
+        <span class="mr-auto text-h4">{{ name }}</span>
+        <span class="mr-2 text-body2">{{ days }}</span>
+        <span class="text-body2">{{ time }}</span>
       </p>
-      <p class="text-body2 font-normal leading-normal tracking-normal">
-        以新鮮海產料理聞名，我們的專業廚師選用高雄當地的海鮮，每一道菜都充滿海洋的鮮美與清甜。無論是烤魚、蒸蝦還是煮蛤蜊，都能讓您品嚐到最新鮮的海洋風味。
+      <p class="whitespace-normal text-body2 font-normal leading-normal tracking-normal">
+        {{ describe }}
       </p>
     </div>
   </div>
@@ -27,6 +27,7 @@ export interface FoodInfo {
   days: string;
   time: string;
   image: string;
+  describe: string;
 }
 </script>
 
@@ -38,6 +39,7 @@ const props = withDefaults(defineProps<Partial<FoodInfo>>(), {
   name: '',
   time: '',
   days: '',
+  describe: '',
 });
 
 const { image } = toRefs(props);

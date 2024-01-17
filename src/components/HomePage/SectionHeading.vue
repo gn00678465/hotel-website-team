@@ -12,15 +12,17 @@
   </div>
 </template>
 
+<script lang="ts">
+export type SectionHeadingProps = {
+  textClass: string;
+  barClass: string;
+};
+</script>
+
 <script setup lang="ts">
 import { toRefs } from 'vue';
 
-interface Props {
-  textClass: string;
-  barClass: string;
-}
-
-const props = withDefaults(defineProps<Partial<Props>>(), {
+const props = withDefaults(defineProps<Partial<SectionHeadingProps>>(), {
   textClass: undefined,
   barClass: undefined,
 });
