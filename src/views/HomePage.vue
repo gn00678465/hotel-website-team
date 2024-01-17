@@ -137,7 +137,9 @@
   <section class="relative">
     <see-more-item :images="seeMore"></see-more-item>
   </section>
-  <section class="bg-primary-40 px-3 py-20 desktop:py-30 desktop:pl-78 desktop:pr-0">
+  <section
+    class="overflow-x-hidden bg-primary-40 py-20 pl-3 desktop:py-30 desktop:pl-78 desktop:pr-0"
+  >
     <section-heading
       class="mb-10 w-[306px] desktop:mb-20 desktop:w-auto"
       textClass="text-primary-100"
@@ -146,11 +148,20 @@
       <template #above>佳餚</template>
       <template #below>美饌</template>
     </section-heading>
-    <ul>
-      <li>
-        <food-card :image="image5"></food-card>
-      </li>
-    </ul>
+    <div
+      class="w-full overflow-auto whitespace-nowrap"
+      v-smooth-scrollbar="{ plugins: { overscroll: false } }"
+    >
+      <ul class="hide-scrollbar space-x-6 pr-3">
+        <li
+          v-for="(food, idx) of foods"
+          :key="idx"
+          class="min-x-[300px] inline-block w-full max-w-[416px]"
+        >
+          <food-card v-bind="food"></food-card>
+        </li>
+      </ul>
+    </div>
   </section>
   <section>Section1</section>
 </template>
@@ -172,7 +183,8 @@ import image4 from '@/assets/images/homepage-4.jpg';
 import image5 from '@/assets/images/homepage-5.jpg';
 import CurveH from '@/components/background/CurveH.vue';
 import SeeMoreItem from '@/components/HomePage/SeeMoreItem.vue';
-import FoodCard from '@/components/HomePage/FoodCard.vue';
+import FoodCard, { type FoodInfo } from '@/components/HomePage/FoodCard.vue';
+import vSmoothScrollbar from '@/directives/smoothScrollbar';
 
 const navRef = ref<InstanceType<typeof BaseNav> | null>(null);
 const navRect = useElementBounding(navRef);
@@ -198,6 +210,51 @@ const newsArr = ref([
 ]);
 
 const seeMore = ref([image5]);
+
+const foods = ref<FoodInfo[]>([
+  {
+    name: '海霸',
+    days: 'SUN-MON',
+    time: '11:00 - 20:30',
+    image: image5,
+  },
+  {
+    name: '海霸',
+    days: 'SUN-MON',
+    time: '11:00 - 20:30',
+    image: image5,
+  },
+  {
+    name: '海霸',
+    days: 'SUN-MON',
+    time: '11:00 - 20:30',
+    image: image5,
+  },
+  {
+    name: '海霸',
+    days: 'SUN-MON',
+    time: '11:00 - 20:30',
+    image: image5,
+  },
+  {
+    name: '海霸',
+    days: 'SUN-MON',
+    time: '11:00 - 20:30',
+    image: image5,
+  },
+  {
+    name: '海霸',
+    days: 'SUN-MON',
+    time: '11:00 - 20:30',
+    image: image5,
+  },
+  {
+    name: '海霸',
+    days: 'SUN-MON',
+    time: '11:00 - 20:30',
+    image: image5,
+  },
+]);
 </script>
 
 <style scoped lang="scss">
@@ -241,5 +298,14 @@ const seeMore = ref([image5]);
   @media (min-width: 768px) {
     border-radius: 80px 80px 0px 80px;
   }
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 </style>

@@ -1,6 +1,11 @@
 <template>
   <div class="relative overflow-hidden rounded-lg">
-    <img :src="image" alt="" srcset="" class="aspect-[5/9] object-cover" />
+    <img
+      :src="image"
+      alt=""
+      srcset=""
+      class="aspect-[5/8] w-full object-cover object-center desktop:aspect-[52/75]"
+    />
     <div
       class="card-content absolute bottom-0 left-0 right-0 w-full space-y-4 p-3 text-neutral-white"
     >
@@ -16,15 +21,23 @@
   </div>
 </template>
 
+<script lang="ts">
+export interface FoodInfo {
+  name: string;
+  days: string;
+  time: string;
+  image: string;
+}
+</script>
+
 <script setup lang="ts">
 import { toRefs } from 'vue';
 
-interface Props {
-  image: string;
-}
-
-const props = withDefaults(defineProps<Partial<Props>>(), {
+const props = withDefaults(defineProps<Partial<FoodInfo>>(), {
   image: undefined,
+  name: '',
+  time: '',
+  days: '',
 });
 
 const { image } = toRefs(props);
