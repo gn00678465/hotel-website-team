@@ -9,12 +9,14 @@
     <div
       class="card-content absolute bottom-0 left-0 right-0 w-full space-y-4 p-3 text-neutral-white desktop:p-6"
     >
-      <p class="mb-4 flex items-center font-bold">
-        <span class="mr-auto text-h4">{{ name }}</span>
-        <span class="mr-2 text-body2">{{ days }}</span>
-        <span class="text-body2">{{ time }}</span>
-      </p>
-      <p class="whitespace-normal text-body2 font-normal leading-normal tracking-normal">
+      <div class="mb-4 flex items-center font-bold">
+        <h6 class="mr-auto text-h5">{{ name }}</h6>
+        <h6 class="mr-2 text-body2 desktop:text-body">{{ days }}</h6>
+        <h6 class="text-body2 desktop:text-body">{{ time }}</h6>
+      </div>
+      <p
+        class="whitespace-normal text-body2 font-medium leading-normal tracking-normal desktop:text-body"
+      >
         {{ describe }}
       </p>
     </div>

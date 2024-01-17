@@ -8,9 +8,7 @@
       class="h-[294px] flex-shrink-0 overflow-hidden rounded-lg object-cover desktop:w-[474px]"
     />
     <div class="flex-shrink space-y-2 desktop:space-y-6">
-      <h4
-        class="text-h4 font-bold leading-heading tracking-heading text-neutral-black desktop:text-h3"
-      >
+      <h4 class="text-h4 font-bold text-neutral-black desktop:text-h3">
         {{ title }}
       </h4>
       <p

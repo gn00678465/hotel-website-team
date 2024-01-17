@@ -47,16 +47,14 @@
       <div
         class="flex flex-grow-0 flex-col items-center justify-center font-bold text-primary-100 desktop:flex-grow desktop:items-start"
       >
-        <p class="mb-2 text-h4 leading-heading tracking-[2px] desktop:text-h2">享樂酒店</p>
-        <p class="mb-5 text-body leading-heading tracking-[1.2px] desktop:mb-10 desktop:text-h5">
-          Enjoyment Luxury Hotel
-        </p>
+        <h2 class="mb-2 text-h4 desktop:text-h2">享樂酒店</h2>
+        <h3 class="mb-5 text-body desktop:mb-10 desktop:text-h5">Enjoyment Luxury Hotel</h3>
         <div class="divider h-[83px] w-[2px] bg-primary-120 desktop:h-[2px] desktop:w-full"></div>
       </div>
       <div class="relative py-15 pr-5 desktop:ml-50 desktop:py-24 desktop:pr-50">
         <div class="relative z-10 font-bold text-neutral-white">
-          <p class="text-h1 leading-heading tracking-heading desktop:text-h0">高雄</p>
-          <p class="mb-6 text-h1 leading-heading tracking-heading desktop:text-h0">豪華住宿之選</p>
+          <h2 class="text-h1 desktop:text-h0">高雄</h2>
+          <h2 class="mb-6 text-h1 desktop:text-h0">豪華住宿之選</h2>
           <p
             class="mb-10 text-body leading-normal tracking-normal text-neutral-40 desktop:text-h3 desktop:font-semibold desktop:leading-heading desktop:tracking-heading"
           >
@@ -72,8 +70,8 @@
     class="relative flex flex-col gap-y-10 bg-primary-10 px-3 py-20 desktop:flex-row desktop:gap-x-20 desktop:gap-y-0 desktop:px-78 desktop:py-30"
   >
     <div class="text-left text-h3 font-bold tracking-heading text-primary-100 desktop:text-h1">
-      <p class="mb-1 leading-heading">最新</p>
-      <p class="mb-6 leading-heading desktop:mb-10">消息</p>
+      <h2 class="mb-1">最新</h2>
+      <h2 class="mb-6 desktop:mb-10">消息</h2>
       <div class="h-[2px] w-[140px] bg-primary-to-l"></div>
     </div>
     <div class="space-y-10">
@@ -111,7 +109,7 @@
           <li
             v-for="(txt, idx) of aboutContent"
             :key="idx"
-            class="whitespace-pre-line text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:text-body desktop:leading-heading"
+            class="text-body2 font-normal leading-normal tracking-normal text-neutral-white desktop:whitespace-pre-line desktop:text-body"
           >
             {{ txt }}
           </li>
@@ -134,14 +132,14 @@
       <template #below>美饌</template>
     </section-heading>
     <div
-      class="w-full overflow-auto whitespace-nowrap"
+      class="w-full overflow-auto whitespace-nowrap pr-3"
       v-smooth-scrollbar="{ plugins: { overscroll: false } }"
     >
-      <ul class="space-x-6 pr-3">
+      <ul class="space-x-6">
         <li
           v-for="(food, idx) of foods"
           :key="idx"
-          class="min-x-[300px] inline-block w-full max-w-[416px]"
+          class="inline-block w-full max-w-[300px] desktop:max-w-[416px]"
         >
           <food-card v-bind="food"></food-card>
         </li>
@@ -173,22 +171,22 @@
       >
         <li class="space-y-2 text-neutral-white">
           <IconCar class="desktop:mb-4" :size="48" color="#BE9C7C" />
-          <p class="text-body font-bold leading-normal tracking-normal">自行開車</p>
-          <p class="text-body2 font-normal leading-normal tracking-normal">
+          <h5 class="text-body desktop:text-h5">自行開車</h5>
+          <p class="text-body2 font-normal leading-normal tracking-normal desktop:text-body">
             如果您選擇自行開車，可以透過國道一號下高雄交流道，往市區方向行駛，並依路標指示即可抵達「享樂酒店」。飯店內設有停車場，讓您停車方便。
           </p>
         </li>
         <li class="space-y-2 text-neutral-white">
           <IconTrain class="desktop:mb-4" :size="48" color="#BE9C7C" />
-          <p class="text-body font-bold leading-normal tracking-normal">高鐵/火車</p>
-          <p class="text-body2 font-normal leading-normal tracking-normal">
+          <h5 class="text-body desktop:text-h5">高鐵/火車</h5>
+          <p class="text-body2 font-normal leading-normal tracking-normal desktop:text-body">
             如果您是搭乘高鐵或火車，可於左營站下車，外頭有計程車站，搭乘計程車約20分鐘即可抵達。或者您也可以轉乘捷運紅線至中央公園站下車，步行約10分鐘便可抵達。
           </p>
         </li>
         <li class="space-y-2 text-neutral-white">
           <IconLuxurycar class="desktop:mb-4" :size="48" color="#BE9C7C" />
-          <p class="text-body font-bold leading-normal tracking-normal">禮賓車服務</p>
-          <p class="text-body2 font-normal leading-normal tracking-normal">
+          <h5 class="text-body desktop:text-h5">禮賓車服務</h5>
+          <p class="text-body2 font-normal leading-normal tracking-normal desktop:text-body">
             承億酒店提供禮賓專車接送服務，但因目的地遠近會有不同的收費，請撥打電話將由專人為您服務洽詢專線：(07)123-4567
           </p>
         </li>
@@ -207,7 +205,6 @@ import homePageBanner from '@/assets/images/homepage-banner.jpg';
 import dot from '@/assets/images/dot.svg';
 import image4 from '@/assets/images/homepage-4.jpg';
 import image5 from '@/assets/images/homepage-5.jpg';
-import CurveH from '@/components/background/CurveH.vue';
 import { FoodCard, NewsCard, SeeMoreCard, SectionHeading } from '@/components/HomePage';
 import type { FoodInfo, NewsInfo } from '@/components/HomePage';
 import vSmoothScrollbar from '@/directives/smoothScrollbar';
@@ -216,6 +213,8 @@ import IconCar from '@/components/icons/IconCar.vue';
 import IconTrain from '@/components/icons/IconTrain.vue';
 import IconLuxurycar from '@/components/icons/IconLuxurycar.vue';
 import map from '@/assets/images/homepage/map.png';
+import CurveH from '@/components/background/CurveH.vue';
+import CurveV from '@/components/background/CurveV.vue';
 
 const navRef = ref<InstanceType<typeof BaseNav> | null>(null);
 const navRect = useElementBounding(navRef);

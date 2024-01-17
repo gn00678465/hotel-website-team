@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="curve-h">
+    <div class="curve-h relative">
       <svg
         v-for="n in count"
         :key="n"
         xmlns="http://www.w3.org/2000/svg"
-        width="1060"
-        height="80"
+        :width="width"
+        :height="height"
         viewBox="0 0 1060 80"
         fill="none"
         class="absolute"
@@ -25,18 +25,20 @@
 import { toRefs } from 'vue';
 
 interface Props {
-  color?: string;
-  size?: number;
-  count?: number;
+  color: string;
+  width: number;
+  height: number;
+  count: number;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Partial<Props>>(), {
   count: 1,
   color: '#BF9D7D',
-  size: 24,
+  width: 1060,
+  height: 80,
 });
 
-const { color, size, count } = toRefs(props);
+const { color, width, height, count } = toRefs(props);
 </script>
 
 <style scoped lang="scss">

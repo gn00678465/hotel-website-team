@@ -20,7 +20,7 @@
       class="space-y-6 text-neutral-white desktop:static desktop:w-[628px] desktop:flex-shrink-0 desktop:space-y-10"
     >
       <li class="space-y-2 desktop:space-y-4">
-        <p class="text-h4 font-bold leading-heading tracking-heading desktop:text-h2">尊爵雙人房</p>
+        <h3 class="text-h4 font-bold desktop:text-h2">尊爵雙人房</h3>
         <p class="text-body2 font-normal leading-normal tracking-normal desktop:text-body">
           享受高級的住宿體驗，尊爵雙人房提供給您舒適寬敞的空間和精緻的裝潢。
         </p>
